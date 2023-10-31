@@ -12,18 +12,17 @@ dt = 0
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
-labirinto = [
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 'm', 0, 1, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 0, 0, 0, 0, 0, 'e', 1],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-]
+maze_file = open('mazes/maze1.txt')
+
+maze_lines = maze_file.readlines()
+
+labirinto = []
+
+for line in maze_lines:
+    line = line.replace('\n', '')
+    funcao_str = lambda x: x
+    lista = list(map(funcao_str, line))
+    labirinto.append(lista)
 
 start_x = 0
 start_y = 0
@@ -36,7 +35,7 @@ start_caminho = None
 for i in range(0, len(labirinto)):
     for j in range(len(labirinto)):
         color = ""
-        if labirinto[i][j] == 1:
+        if labirinto[i][j] == '1':
             color = "pink"
         elif labirinto[i][j] == 'm':
             color = "blue"
